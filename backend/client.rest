@@ -1,0 +1,13 @@
+### Get all tasks
+GET http://localhost:3001/
+
+### Create a new task
+POST http://localhost:3001/create
+Content-Type: application/json
+
+{
+  "description": "New Task5"
+}
+
+### Delete a task
+DELETE http://localhost:3001/delete/1
