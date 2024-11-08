@@ -11,3 +11,12 @@ Content-Type: application/json
 
 ### Delete a task
 DELETE http://localhost:3001/delete/1
+
+###
+POST http://localhost:3001/user/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
