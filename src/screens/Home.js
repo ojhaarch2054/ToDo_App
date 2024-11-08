@@ -1,11 +1,13 @@
-import './App.css';
+import './Home.css';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import Row from './components/Row';
+import Rows from '../components/Row.js';
+import { useUser } from '../context/useUser';
 
 const url = 'http://localhost:3001'
 
-function App() {
+function Home() {
+  const{user} = useUser()
   const [task,setTask] = useState("");
   const [tasks,setTasks] = useState([]);
 
@@ -18,11 +20,13 @@ function App() {
       })
     },[])
   
+
   //to add tasks
   const addTask = () => {
+    const headers = {headers:{Authorization: user.token}}
     axios.post(url+'/create',{
       description:task
-    })
+    },headers)
     .then(response => {
       setTasks([...tasks,{id:response.data.id, description:task}])
       setTask('');
@@ -33,7 +37,8 @@ function App() {
 
   //to delete tasks
   const deleteTask = (id) => {
-    axios.delete(url + '/delete/' + id)
+    const headers = {headers:{Authorization: user.token}}
+    axios.delete(url + '/delete/' + id,headers)
     .then(response => {
       const withoutRemoved = tasks.filter((item) => item.id !== id)
       setTasks(withoutRemoved)
@@ -61,7 +66,7 @@ function App() {
 
       <ul>
         {tasks.map(item => (
-            <Row key={item.id} item={item} deleteTask={deleteTask}/>
+            <Rows item={item} deleteTask={deleteTask}/>
           ))
         }
       </ul>
@@ -69,4 +74,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
