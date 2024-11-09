@@ -8,4 +8,11 @@ li{
 
 .delete-button{
   margin-left: 16px;
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.delete-button:hover {
+    background-color: darkred;
 }

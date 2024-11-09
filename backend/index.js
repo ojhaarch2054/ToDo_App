@@ -2,10 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import todoRouter from './routes/todoRouter.js'
 import userRouter from './routes/userRouter.js'
-import dotenv from 'dotenv';
 
-
-dotenv.config()
+//dotenv.config()
 
 const port = process.env.PORT
 
